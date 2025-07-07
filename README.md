@@ -11,7 +11,8 @@
 
 *A sophisticated, production-ready Security Information and Event Management (SIEM) dashboard designed for home labs and small enterprises. Features real-time threat detection, network monitoring, and incident response capabilities with enterprise-grade accuracy.*
 
-![Dashboard Preview](https://via.placeholder.com/800x400/1e293b/ffffff?text=SIEM+Dashboard+Preview)
+<img width="955" alt="image" src="https://github.com/user-attachments/assets/e9225ec2-f4b4-4e4c-992a-85d21d493cf9" />
+
 
 </div>
 
@@ -132,25 +133,6 @@ npm run preview
 - **Responsive Design** - Mobile-first approach with desktop optimization
 - **Performance Optimized** - Lazy loading and efficient rendering
 
----
-
-## 📱 Screenshots
-
-<div align="center">
-
-### 🏠 Security Operations Center
-![SOC Dashboard](https://via.placeholder.com/800x400/1e293b/ffffff?text=SOC+Dashboard+with+Real-time+Metrics)
-
-### 🌐 Network Monitoring
-![Network Monitor](https://via.placeholder.com/800x400/1e293b/ffffff?text=3D+Network+Topology+Visualization)
-
-### 🚨 Incident Response
-![Incident Response](https://via.placeholder.com/800x400/1e293b/ffffff?text=Incident+Management+Center)
-
-### 📊 Threat Intelligence
-![Threat Intel](https://via.placeholder.com/800x400/1e293b/ffffff?text=Threat+Intelligence+Dashboard)
-
-</div>
 
 ---
 
@@ -328,11 +310,7 @@ This project was inspired by enterprise SIEM solutions and the need for accessib
 [![Discussions](https://img.shields.io/badge/GitHub-Discussions-blue?style=for-the-badge&logo=github)](https://github.com/Tillu6/Home-Lab-SIEM-Dashboard/discussions)
 [![Discord](https://img.shields.io/badge/Discord-Community-7289da?style=for-the-badge&logo=discord)](https://discord.gg/homelab-siem)
 
-### 📧 Contact Information
-- **General Questions**: info@homelab-siem.com
-- **Technical Support**: support@homelab-siem.com
-- **Security Issues**: security@homelab-siem.com
-- **Business Inquiries**: business@homelab-siem.com
+
 
 </div>
 
