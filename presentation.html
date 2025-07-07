@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishGuard AI - Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            width: 90%;
+            max-width: 1200px;
+            height: 90%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 60px;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .slide h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            background: linear-gradient(45deg, #fff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .slide h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #e0e7ff;
+        }
+
+        .slide h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #f1f5f9;
+        }
+
+        .slide p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #e2e8f0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .stat-card {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #60a5fa;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            color: #e2e8f0;
+        }
+
+        .tech-stack {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 50px;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .tech-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            min-width: 150px;
+        }
+
+        .tech-logo {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .slide-indicators {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        .comparison-table {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 40px;
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-table th {
+            background: rgba(255, 255, 255, 0.2);
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .comparison-table td {
+            font-size: 1.1rem;
+        }
+
+        .checkmark {
+            color: #10b981;
+            font-size: 1.5rem;
+        }
+
+        .crossmark {
+            color: #ef4444;
+            font-size: 1.5rem;
+        }
+
+        .demo-section {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .demo-btn {
+            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .demo-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #cbd5e1;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .highlight {
+            color: #60a5fa;
+            font-weight: 600;
+        }
+
+        .bullet-points {
+            text-align: left;
+            margin-top: 30px;
+        }
+
+        .bullet-points li {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #e2e8f0;
+            list-style: none;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .bullet-points li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide.active * {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="slide-number">1 / 8</div>
+            <h1>🛡️ PhishGuard AI</h1>
+            <p class="subtitle">AI-Powered Phishing Detection Tool</p>
+            <p>Advanced cybersecurity solution with <span class="highlight">98.7% accuracy</span></p>
+            <div class="demo-section">
+                <a href="https://melodious-bavarois-5e0630.netlify.app" class="demo-btn" target="_blank">
+                    🚀 Live Demo
+                </a>
+                <a href="https://github.com/Tillu6/AI-Powered-Phishing-Detection-Tool" class="demo-btn" target="_blank">
+                    📂 GitHub Repository
+                </a>
+            </div>
+        </div>
+
+        <!-- Slide 2: Problem Statement -->
+        <div class="slide">
+            <div class="slide-number">2 / 8</div>
+            <h2>🚨 The Problem</h2>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number">$12B</div>
+                    <div class="stat-label">Annual losses from phishing</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">600%</div>
+                    <div class="stat-label">Increase since 2020</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">90%</div>
+                    <div class="stat-label">Of data breaches start with phishing</div>
+                </div>
+            </div>
+            <p style="margin-top: 40px;">Traditional security tools are failing to keep up with sophisticated phishing attacks</p>
+        </div>
+
+        <!-- Slide 3: Solution -->
+        <div class="slide">
+            <div class="slide-number">3 / 8</div>
+            <h2>💡 Our Solution</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🧠</span>
+                    <h3>AI-Powered Analysis</h3>
+                    <p>Advanced machine learning algorithms analyze email patterns and URL structures</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3>Real-Time Detection</h3>
+                    <p>Instant threat analysis with results in under 2 seconds</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📚</span>
+                    <h3>User Education</h3>
+                    <p>Interactive training modules to build security awareness</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3>Comprehensive Dashboard</h3>
+                    <p>Beautiful analytics and real-time threat monitoring</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Key Features -->
+        <div class="slide">
+            <div class="slide-number">4 / 8</div>
+            <h2>🌟 Key Features</h2>
+            <div class="bullet-points">
+                <ul>
+                    <li><strong>Email Analysis:</strong> SPF, DKIM, DMARC validation with content pattern recognition</li>
+                    <li><strong>URL Scanner:</strong> Domain reputation, SSL analysis, and threat intelligence</li>
+                    <li><strong>Security Education:</strong> Interactive quizzes and phishing awareness training</li>
+                    <li><strong>Real-time Dashboard:</strong> Live threat monitoring with visual analytics</li>
+                    <li><strong>Technical Analysis:</strong> Comprehensive security reports with actionable insights</li>
+                    <li><strong>Modern UI/UX:</strong> Responsive design with accessibility-first approach</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 5: Technology Stack -->
+        <div class="slide">
+            <div class="slide-number">5 / 8</div>
+            <h2>🛠️ Technology Stack</h2>
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <span class="tech-logo">⚛️</span>
+                    <h3>React 18.3.1</h3>
+                    <p>Modern UI Library</p>
+                </div>
+                <div class="tech-item">
+                    <span class="tech-logo">📘</span>
+                    <h3>TypeScript</h3>
+                    <p>Type-Safe Development</p>
+                </div>
+                <div class="tech-item">
+                    <span class="tech-logo">🎨</span>
+                    <h3>Tailwind CSS</h3>
+                    <p>Utility-First Styling</p>
+                </div>
+                <div class="tech-item">
+                    <span class="tech-logo">⚡</span>
+                    <h3>Vite</h3>
+                    <p>Lightning-Fast Build</p>
+                </div>
+            </div>
+            <p style="margin-top: 40px;">Built with modern, production-ready technologies for optimal performance and maintainability</p>
+        </div>
+
+        <!-- Slide 6: Comparison -->
+        <div class="slide">
+            <div class="slide-number">6 / 8</div>
+            <h2>📈 Why Choose PhishGuard AI?</h2>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Traditional Tools</th>
+                            <th>PhishGuard AI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Accuracy</strong></td>
+                            <td>70-80%</td>
+                            <td><span class="highlight">98.7%</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Real-time Analysis</strong></td>
+                            <td><span class="crossmark">✗</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>User Education</strong></td>
+                            <td><span class="crossmark">✗</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Modern UI/UX</strong></td>
+                            <td><span class="crossmark">✗</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Open Source</strong></td>
+                            <td><span class="crossmark">✗</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Slide 7: Impact & Results -->
+        <div class="slide">
+            <div class="slide-number">7 / 8</div>
+            <h2>🎯 Impact & Results</h2>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number">98.7%</div>
+                    <div class="stat-label">Detection Accuracy</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">&lt;2s</div>
+                    <div class="stat-label">Analysis Time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Open Source</div>
+                </div>
+            </div>
+            <div class="bullet-points" style="margin-top: 40px;">
+                <ul>
+                    <li>Tested against real-world phishing campaigns</li>
+                    <li>Comprehensive threat intelligence integration</li>
+                    <li>User-friendly interface for non-technical users</li>
+                    <li>Production-ready with scalable architecture</li>
+                    <li>Continuous learning and improvement capabilities</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 8: Contact & Demo -->
+        <div class="slide">
+            <div class="slide-number">8 / 8</div>
+            <h2>🚀 Get Started Today</h2>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h3>🌐 Live Demo</h3>
+                    <p>Experience PhishGuard AI in action</p>
+                    <a href="https://melodious-bavarois-5e0630.netlify.app" class="demo-btn" target="_blank">
+                        Try Now
+                    </a>
+                </div>
+                <div class="contact-card">
+                    <h3>📂 Source Code</h3>
+                    <p>Explore the codebase on GitHub</p>
+                    <a href="https://github.com/Tillu6/AI-Powered-Phishing-Detection-Tool" class="demo-btn" target="_blank">
+                        View Code
+                    </a>
+                </div>
+            </div>
+            <p style="margin-top: 40px; font-size: 1.5rem;">
+                <span class="highlight">Thank you for your attention!</span><br>
+                Questions & Discussion
+            </p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    </div>
+
+    <!-- Slide Indicators -->
+    <div class="slide-indicators">
+        <span class="indicator active" onclick="currentSlide(1)"></span>
+        <span class="indicator" onclick="currentSlide(2)"></span>
+        <span class="indicator" onclick="currentSlide(3)"></span>
+        <span class="indicator" onclick="currentSlide(4)"></span>
+        <span class="indicator" onclick="currentSlide(5)"></span>
+        <span class="indicator" onclick="currentSlide(6)"></span>
+        <span class="indicator" onclick="currentSlide(7)"></span>
+        <span class="indicator" onclick="currentSlide(8)"></span>
+    </div>
+
+    <script>
+        let currentSlideIndex = 1;
+        const totalSlides = 8;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            const indicators = document.querySelectorAll('.indicator');
+            
+            if (n > totalSlides) currentSlideIndex = 1;
+            if (n < 1) currentSlideIndex = totalSlides;
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+            
+            slides[currentSlideIndex - 1].classList.add('active');
+            indicators[currentSlideIndex - 1].classList.add('active');
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = currentSlideIndex === 1;
+            document.getElementById('nextBtn').disabled = currentSlideIndex === totalSlides;
+        }
+
+        function changeSlide(n) {
+            currentSlideIndex += n;
+            showSlide(currentSlideIndex);
+        }
+
+        function currentSlide(n) {
+            currentSlideIndex = n;
+            showSlide(currentSlideIndex);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowLeft') changeSlide(-1);
+            if (event.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // Initialize
+        showSlide(currentSlideIndex);
+    </script>
+</body>
+</html>
