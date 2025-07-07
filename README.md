@@ -7,7 +7,7 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.5.3-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.1-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-**🚀 [Live Demo](https://melodious-bavarois-5e0630.netlify.app/) | 📖 [Documentation](#features) | 🐛 [Report Bug](https://github.com/Tillu6/Home-Lab-SIEM-Dashboard/issues)**
+**🚀 [Live Demo](https://melodious-bavarois-5e0630.netlify.app) | 📖 [Documentation](#features) | 🐛 [Report Bug](https://github.com/Tillu6/Home-Lab-SIEM-Dashboard/issues)**
 
 *A sophisticated, production-ready Security Information and Event Management (SIEM) dashboard designed for home labs and small enterprises. Features real-time threat detection, network monitoring, and incident response capabilities with enterprise-grade accuracy.*
 
